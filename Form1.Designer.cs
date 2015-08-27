@@ -28,9 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.text_rate = new System.Windows.Forms.TextBox();
-			this.text_bps = new System.Windows.Forms.TextBox();
-			this.text_channel = new System.Windows.Forms.TextBox();
+			this.textRate = new System.Windows.Forms.TextBox();
+			this.textBPS = new System.Windows.Forms.TextBox();
+			this.textChannels = new System.Windows.Forms.TextBox();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,38 +44,42 @@
 			this.dataGrid = new System.Windows.Forms.DataGridView();
 			this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Line = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.button_listen = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnPlay = new System.Windows.Forms.Button();
+			this.btnGenerate = new System.Windows.Forms.Button();
+			this.lblOutput = new System.Windows.Forms.Label();
+			this.textPath = new System.Windows.Forms.TextBox();
+			this.btnBrowse = new System.Windows.Forms.Button();
+			this.folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// text_rate
+			// textRate
 			// 
-			this.text_rate.Enabled = false;
-			this.text_rate.Location = new System.Drawing.Point(198, 6);
-			this.text_rate.Name = "text_rate";
-			this.text_rate.Size = new System.Drawing.Size(100, 20);
-			this.text_rate.TabIndex = 0;
-			this.text_rate.Text = "41000";
+			this.textRate.Enabled = false;
+			this.textRate.Location = new System.Drawing.Point(198, 6);
+			this.textRate.Name = "textRate";
+			this.textRate.Size = new System.Drawing.Size(100, 20);
+			this.textRate.TabIndex = 0;
+			this.textRate.Text = "41000";
 			// 
-			// text_bps
+			// textBPS
 			// 
-			this.text_bps.Enabled = false;
-			this.text_bps.Location = new System.Drawing.Point(198, 32);
-			this.text_bps.Name = "text_bps";
-			this.text_bps.Size = new System.Drawing.Size(100, 20);
-			this.text_bps.TabIndex = 1;
-			this.text_bps.Text = "16";
+			this.textBPS.Enabled = false;
+			this.textBPS.Location = new System.Drawing.Point(198, 32);
+			this.textBPS.Name = "textBPS";
+			this.textBPS.Size = new System.Drawing.Size(100, 20);
+			this.textBPS.TabIndex = 1;
+			this.textBPS.Text = "16";
 			// 
-			// text_channel
+			// textChannels
 			// 
-			this.text_channel.Enabled = false;
-			this.text_channel.Location = new System.Drawing.Point(198, 59);
-			this.text_channel.Name = "text_channel";
-			this.text_channel.Size = new System.Drawing.Size(100, 20);
-			this.text_channel.TabIndex = 2;
-			this.text_channel.Text = "2";
+			this.textChannels.Enabled = false;
+			this.textChannels.Location = new System.Drawing.Point(198, 59);
+			this.textChannels.Name = "textChannels";
+			this.textChannels.Size = new System.Drawing.Size(100, 20);
+			this.textChannels.TabIndex = 2;
+			this.textChannels.Text = "2";
 			// 
 			// menuStrip1
 			// 
@@ -102,35 +106,36 @@
 			// newToolStripMenuItem
 			// 
 			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-			this.newToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+			this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.newToolStripMenuItem.Text = "New";
 			this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
 			// loadToolStripMenuItem
 			// 
 			this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-			this.loadToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+			this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.loadToolStripMenuItem.Text = "Open";
 			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveToolStripMenuItem.Text = "Save";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// saveAsToolStripMenuItem
 			// 
 			this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+			this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveAsToolStripMenuItem.Text = "Save As";
 			this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
 			// label1
 			// 
@@ -170,9 +175,9 @@
 			this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FileName,
             this.Line});
-			this.dataGrid.Location = new System.Drawing.Point(17, 91);
+			this.dataGrid.Location = new System.Drawing.Point(17, 133);
 			this.dataGrid.Name = "dataGrid";
-			this.dataGrid.Size = new System.Drawing.Size(318, 366);
+			this.dataGrid.Size = new System.Drawing.Size(318, 395);
 			this.dataGrid.TabIndex = 14;
 			this.dataGrid.SelectionChanged += new System.EventHandler(this.dataGrid_SelectionChanged);
 			this.dataGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.dataGrid_DragDrop);
@@ -190,40 +195,70 @@
 			this.Line.HeaderText = "Line";
 			this.Line.Name = "Line";
 			// 
-			// button_listen
+			// btnPlay
 			// 
-			this.button_listen.Location = new System.Drawing.Point(17, 57);
-			this.button_listen.Name = "button_listen";
-			this.button_listen.Size = new System.Drawing.Size(75, 23);
-			this.button_listen.TabIndex = 15;
-			this.button_listen.Text = "Play";
-			this.button_listen.UseVisualStyleBackColor = true;
+			this.btnPlay.Location = new System.Drawing.Point(17, 57);
+			this.btnPlay.Name = "btnPlay";
+			this.btnPlay.Size = new System.Drawing.Size(75, 23);
+			this.btnPlay.TabIndex = 15;
+			this.btnPlay.Text = "Play";
+			this.btnPlay.UseVisualStyleBackColor = true;
 			// 
-			// button1
+			// btnGenerate
 			// 
-			this.button1.Location = new System.Drawing.Point(17, 27);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 16;
-			this.button1.Text = "Generate";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.btnGenerate.Location = new System.Drawing.Point(17, 27);
+			this.btnGenerate.Name = "btnGenerate";
+			this.btnGenerate.Size = new System.Drawing.Size(75, 23);
+			this.btnGenerate.TabIndex = 16;
+			this.btnGenerate.Text = "Generate";
+			this.btnGenerate.UseVisualStyleBackColor = true;
+			this.btnGenerate.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// lblOutput
+			// 
+			this.lblOutput.AutoSize = true;
+			this.lblOutput.Location = new System.Drawing.Point(18, 109);
+			this.lblOutput.Name = "lblOutput";
+			this.lblOutput.Size = new System.Drawing.Size(67, 13);
+			this.lblOutput.TabIndex = 17;
+			this.lblOutput.Text = "Output Path:";
+			// 
+			// textPath
+			// 
+			this.textPath.Location = new System.Drawing.Point(91, 106);
+			this.textPath.Name = "textPath";
+			this.textPath.Size = new System.Drawing.Size(100, 20);
+			this.textPath.TabIndex = 18;
+			this.textPath.TextChanged += new System.EventHandler(this.textPath_TextChanged);
+			// 
+			// btnBrowse
+			// 
+			this.btnBrowse.Location = new System.Drawing.Point(198, 104);
+			this.btnBrowse.Name = "btnBrowse";
+			this.btnBrowse.Size = new System.Drawing.Size(75, 23);
+			this.btnBrowse.TabIndex = 19;
+			this.btnBrowse.Text = "Browse...";
+			this.btnBrowse.UseVisualStyleBackColor = true;
+			this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
 			// 
 			// Form1
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(347, 469);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.button_listen);
+			this.ClientSize = new System.Drawing.Size(347, 540);
+			this.Controls.Add(this.btnBrowse);
+			this.Controls.Add(this.textPath);
+			this.Controls.Add(this.lblOutput);
+			this.Controls.Add(this.btnGenerate);
+			this.Controls.Add(this.btnPlay);
 			this.Controls.Add(this.dataGrid);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.text_channel);
-			this.Controls.Add(this.text_bps);
-			this.Controls.Add(this.text_rate);
+			this.Controls.Add(this.textChannels);
+			this.Controls.Add(this.textBPS);
+			this.Controls.Add(this.textRate);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Form1";
@@ -238,9 +273,9 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox text_rate;
-		private System.Windows.Forms.TextBox text_bps;
-		private System.Windows.Forms.TextBox text_channel;
+		private System.Windows.Forms.TextBox textRate;
+		private System.Windows.Forms.TextBox textBPS;
+		private System.Windows.Forms.TextBox textChannels;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
@@ -254,8 +289,12 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Line;
 		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-		private System.Windows.Forms.Button button_listen;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnPlay;
+		private System.Windows.Forms.Button btnGenerate;
+		private System.Windows.Forms.Label lblOutput;
+		private System.Windows.Forms.TextBox textPath;
+		private System.Windows.Forms.Button btnBrowse;
+		private System.Windows.Forms.FolderBrowserDialog folderBrowser;
 	}
 }
 

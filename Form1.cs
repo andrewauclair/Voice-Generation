@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
 using System.Speech.AudioFormat;
+using System.IO;
 
 namespace VoiceGeneration
 {
@@ -16,6 +17,7 @@ namespace VoiceGeneration
 		public Form1()
 		{
 			InitializeComponent();
+			textPath_TextChanged(this, null);
 		}
 
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -65,27 +67,27 @@ namespace VoiceGeneration
 
 		private void dataGrid_SelectionChanged(object sender, EventArgs e)
 		{
-			button_listen.Enabled = true;
+			btnPlay.Enabled = true;
 
 			if (dataGrid.SelectedRows.Count < 1)
 			{
-				button_listen.Enabled = false;
+				btnPlay.Enabled = false;
 			}
 
 			if (dataGrid.SelectedCells.Count < 2)
 			{
-				button_listen.Enabled = false;
+				btnPlay.Enabled = false;
 			}
 		}
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			// enable all the components except the combo_character
-			text_rate.Enabled = true;
-			text_bps.Enabled = true;
-			text_channel.Enabled = true;
+			textRate.Enabled = true;
+			textBPS.Enabled = true;
+			textChannels.Enabled = true;
 
-			button_listen.Enabled = true;
+			btnPlay.Enabled = true;
 
 			//combo_character.Items.Clear();
 			//combo_character.Enabled = false;
@@ -130,19 +132,19 @@ namespace VoiceGeneration
 			AudioBitsPerSample t_sample = AudioBitsPerSample.Sixteen;
 			AudioChannel t_channel = AudioChannel.Stereo;
 
-			if (text_rate.Text.CompareTo("") == 0)
+			if (textRate.Text.CompareTo("") == 0)
 			{
-				if (!Int32.TryParse(text_rate.Text, out t_nRate))
+				if (!Int32.TryParse(textRate.Text, out t_nRate))
 				{
 					return;
 				}
 			}
 
-			if (text_bps.Text.CompareTo("") == 0)
+			if (textBPS.Text.CompareTo("") == 0)
 			{
 				int t_nSample = 0;
 
-				if (Int32.TryParse(text_bps.Text, out t_nSample))
+				if (Int32.TryParse(textBPS.Text, out t_nSample))
 				{
 					t_sample = (AudioBitsPerSample)t_nSample;
 				}
@@ -152,17 +154,17 @@ namespace VoiceGeneration
 				}
 			}
 
-			if (text_channel.Text.CompareTo("") == 0)
+			if (textChannels.Text.CompareTo("") == 0)
 			{
 				int t_nChannel = 0;
 
-				if (Int32.TryParse(text_channel.Text, out t_nChannel))
+				if (Int32.TryParse(textChannels.Text, out t_nChannel))
 				{
 					t_channel = (AudioChannel)t_nChannel;
 				}
 			}
 
-			t_progressForm.Generate(m_aryNames, m_aryLines, t_nRate, t_sample, t_channel);
+			t_progressForm.Generate(m_aryNames, m_aryLines, textPath.Text, t_nRate, t_sample, t_channel);
 		}
 
 		private void dataGrid_KeyUp(object sender, KeyEventArgs e)
@@ -195,6 +197,34 @@ namespace VoiceGeneration
 
 		private void characterToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+		}
+
+		private void btnBrowse_Click(object sender, EventArgs e)
+		{
+			DialogResult t_result = folderBrowser.ShowDialog();
+
+			if (t_result == DialogResult.OK)
+			{
+				textPath.Text = folderBrowser.SelectedPath;
+			}
+		}
+
+		private void textPath_TextChanged(object sender, EventArgs e)
+		{
+			bool t_fValid = true;
+
+			// verify that the path exists
+			if (!Directory.Exists(textPath.Text))
+			{
+				t_fValid = false;
+			}
+
+			btnGenerate.Enabled = t_fValid;
+		}
+
+		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
 		}
 	}
 }

@@ -19,26 +19,29 @@ namespace VoiceGeneration
 			InitializeComponent();
 		}
 
-		public void Generate(List<string> p_aryNames, List<string> p_aryLines, int p_nRate, AudioBitsPerSample p_samples, AudioChannel p_channels)
+		public void Generate(List<string> p_aryNames, List<string> p_aryLines, string p_strPath, int p_nRate, AudioBitsPerSample p_samples, AudioChannel p_channels)
 		{
-			label1.Text = "0/" + p_aryNames.Count;
-
 			SpeechAudioFormatInfo t_audioFormatInfo = new SpeechAudioFormatInfo(p_nRate, p_samples, p_channels);
 			SpeechSynthesizer t_synth = new SpeechSynthesizer();
 			
 			progressBar1.Maximum = p_aryLines.Count;
 			progressBar1.Step = 1;
 
-			Directory.CreateDirectory("data");
+			label1.Text = progressBar1.Step + "/" + p_aryNames.Count;
 
 			for (int t_i = 0; t_i < p_aryNames.Count; ++t_i)
 			{
-				t_synth.SetOutputToWaveFile("data/" + p_aryNames[t_i] + ".wav");
+				t_synth.SetOutputToWaveFile(p_strPath + "\\" + p_aryNames[t_i] + ".wav");
 				t_synth.Speak(p_aryLines[t_i]);
+		
 				label1.Text = (t_i + 1) + "/" + p_aryLines.Count;
 				progressBar1.PerformStep();
 				progressBar1.Refresh();
 			}
+
+			t_synth.Dispose();
+
+			Close();
 		}
 	}
 }
